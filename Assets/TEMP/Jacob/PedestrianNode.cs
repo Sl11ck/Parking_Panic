@@ -10,9 +10,12 @@ public struct NodeWeightPair
 
 public class PedestrianNode : MonoBehaviour
 {
-    public bool isSpawner = false;
+    public GameObject spawnObject;
+    public float spawnRate = 1f;
     public bool isDespawner = false;
     public List<NodeWeightPair> nodeWeightsList = new();
+
+    private float cooldown = 0f;
 
     private Dictionary<PedestrianNode, float> nodeWeightsDict;
 
@@ -101,6 +104,21 @@ public class PedestrianNode : MonoBehaviour
                 $"W:{weight:F1}"
             );
     #endif
+        }
+    }
+
+    void Update()
+    {
+        if (spawnObject)
+        {
+            if(cooldown <= 0f)
+            {
+                Instantiate(spawnObject, transform.position, Quaternion.identity);
+                cooldown = spawnRate;
+            } else
+            {
+                cooldown -= Time.deltaTime;
+            }
         }
     }
 }

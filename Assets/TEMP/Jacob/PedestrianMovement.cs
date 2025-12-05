@@ -42,6 +42,10 @@ public class PedestrianMovement : MonoBehaviour
         // Check if reached the target node
         if (Vector3.Distance(transform.position, targetNode.transform.position) <= nodeSwitchRadius)
         {
+            if (targetNode.isDespawner)
+            {
+                Destroy(gameObject);
+            }
             currentNode = targetNode;
             targetNode = currentNode.RandomNode(obedience);
         }
