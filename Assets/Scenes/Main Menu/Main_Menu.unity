@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -594991749660696213, guid: a3ea9347a63df9242b7c0fa63fe7da75, type: 3}
+  m_Sprite: {fileID: 4550356069777901083, guid: 3523348ff05b721488f414d980a4cedd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7186,7 +7186,6 @@ MonoBehaviour:
   settingsPanel: {fileID: 1859650125}
   videoSettingsPanel: {fileID: 257219857}
   audioSettingsPanel: {fileID: 680533915}
-  controlsSettingsPanel: {fileID: 0}
   creditsPanel: {fileID: 1918782614}
   StartScreenText: {fileID: 1247470060}
   startScreenTxtFadeDuration: 1.5
@@ -7194,14 +7193,15 @@ MonoBehaviour:
   settingsBtn: {fileID: 1387794326}
   creditsBtn: {fileID: 985027848}
   exitBtn: {fileID: 640224262}
-  MtnModeBtn: {fileID: 330162541}
-  HighwayModeBtn: {fileID: 186555288}
-  TrackModeBtn: {fileID: 119112594}
+  Lvl1ModeBtn: {fileID: 330162541}
+  Lvl2ModeBtn: {fileID: 186555288}
+  Lvl3ModeBtn: {fileID: 119112594}
+  Lvl4ModeBtn: {fileID: 1794559983}
+  Lvl5ModeBtn: {fileID: 714302769}
   pbackBtn: {fileID: 1278761219}
   VideoBtn: {fileID: 2124846825}
   SaveVideoChangesBtn: {fileID: 2014720866}
   AudioBtn: {fileID: 684366032}
-  ControlsBtn: {fileID: 0}
   sbackBtn: {fileID: 251972771}
   scrollDuration: 5
   scrollDistance: 2
@@ -7209,8 +7209,8 @@ MonoBehaviour:
   acceptSFX: {fileID: 8300000, guid: f5f57cf5b88f5edf7b67c6b7b802ab96, type: 3}
   declineSFX: {fileID: 8300000, guid: 447b2ec03f7311ed88f34d6c1e1e2de7, type: 3}
   highlightSFX: {fileID: 8300000, guid: 8e12397664c2a603cbf77275011431eb, type: 3}
-  MainMenuMusic: {fileID: 8300000, guid: 306946ee89346ff5ea38ace8a63bcf63, type: 3}
-  StartPanelMusic: {fileID: 8300000, guid: 83fe2ecffb995e11e9fb8ebca222c581, type: 3}
+  MainMenuMusic: {fileID: 8300000, guid: dff077055b0bd3440ab486fa3681d093, type: 3}
+  StartPanelMusic: {fileID: 8300000, guid: 257edc9e60b28b54d87af0de6e4f93ef, type: 3}
   audioSettingsSaveLoad: {fileID: 1312406909}
   videoSettingsSaveLoad: {fileID: 579371552}
 --- !u!1 &814013808

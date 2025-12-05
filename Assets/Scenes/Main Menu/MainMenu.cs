@@ -15,7 +15,6 @@ public class PanelManager : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject videoSettingsPanel;
     public GameObject audioSettingsPanel;
-    public GameObject controlsSettingsPanel;
     public GameObject creditsPanel;
 
     [Header("Start Panel Element")]
@@ -166,7 +165,6 @@ public class PanelManager : MonoBehaviour
         playPanel.SetActive(false);
         videoSettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
-        controlsSettingsPanel.SetActive(false);
     }
 
     public void ShowMainPanel()
