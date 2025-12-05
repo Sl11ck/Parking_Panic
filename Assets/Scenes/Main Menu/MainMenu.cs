@@ -29,9 +29,11 @@ public class PanelManager : MonoBehaviour
     public Button exitBtn;
 
     [Header("Play Panel Buttons")]
-    public Button MtnModeBtn;
-    public Button HighwayModeBtn;
-    public Button TrackModeBtn;
+    public Button Lvl1ModeBtn;
+    public Button Lvl2ModeBtn;
+    public Button Lvl3ModeBtn;
+    public Button Lvl4ModeBtn;
+    public Button Lvl5ModeBtn;
     public Button pbackBtn;
 
     [Header("Settings Panel Buttons")]
@@ -39,7 +41,6 @@ public class PanelManager : MonoBehaviour
     public Button SaveVideoChangesBtn;
     public Button AudioBtn;
     // The SaveAudioChangesBtn is the sbackBtn.
-    public Button ControlsBtn;
     public Button sbackBtn;
 
     [Header("Credits Panel Settings")]
@@ -80,24 +81,27 @@ public class PanelManager : MonoBehaviour
         SetupButtonHover(exitBtn);
 
         // Set up Play Panel button listeners
-        MtnModeBtn.onClick.AddListener(LoadMtnMode);
-        HighwayModeBtn.onClick.AddListener(LoadHighwayMode);
-        TrackModeBtn.onClick.AddListener(LoadTrackMode);
+        Lvl1ModeBtn.onClick.AddListener(LoadLvl1Mode);
+        Lvl2ModeBtn.onClick.AddListener(LoadLvl2Mode);
+        Lvl3ModeBtn.onClick.AddListener(LoadLvl3Mode);
+        Lvl4ModeBtn.onClick.AddListener(LoadLvl4Mode);
+        Lvl5ModeBtn.onClick.AddListener(LoadLvl5Mode);
+
         pbackBtn.onClick.AddListener(PlayBackToMainPanel);
-        SetupButtonHover(MtnModeBtn);
-        SetupButtonHover(HighwayModeBtn);
-        SetupButtonHover(TrackModeBtn);
+        SetupButtonHover(Lvl1ModeBtn);
+        SetupButtonHover(Lvl2ModeBtn);
+        SetupButtonHover(Lvl3ModeBtn);
+        SetupButtonHover(Lvl4ModeBtn);
+        SetupButtonHover(Lvl5ModeBtn);
         SetupButtonHover(pbackBtn);
 
         // Set up Settings Panel button listeners
         VideoBtn.onClick.AddListener(ShowVideoSettingsPanel);
         SaveVideoChangesBtn.onClick.AddListener(SaveVideoSettingsChanges);
         AudioBtn.onClick.AddListener(ShowAudioSettingsPanel);
-        ControlsBtn.onClick.AddListener(ShowControlsSettingsPanel);
         sbackBtn.onClick.AddListener(SettingsBackToMainPanel);
         SetupButtonHover(VideoBtn);
         SetupButtonHover(AudioBtn);
-        SetupButtonHover(ControlsBtn);
         SetupButtonHover(sbackBtn);
 
         // Initialize credits references
@@ -210,24 +214,28 @@ public class PanelManager : MonoBehaviour
         playPanel.SetActive(true);
     }
 
-    public void LoadMtnMode()
+    public void LoadLvl1Mode()
     {
-        // PlayAcceptSFX();
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Mountain");
-        StartCoroutine(LoadNextSceneAfterSFX("Mountain"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level1"));
     }
-    public void LoadHighwayMode()
+    public void LoadLvl2Mode()
     {
-        // PlayAcceptSFX();
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Highway");
-        StartCoroutine(LoadNextSceneAfterSFX("Highway"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level2"));
     }
-    public void LoadTrackMode()
+    public void LoadLvl3Mode()
     {
-        // PlayAcceptSFX();
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Track");
-        StartCoroutine(LoadNextSceneAfterSFX("Track"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level3"));
     }
+    public void LoadLvl4Mode()
+    {
+        StartCoroutine(LoadNextSceneAfterSFX("Level4"));
+    }
+    public void LoadLvl5Mode()
+    {
+        StartCoroutine(LoadNextSceneAfterSFX("Level5"));
+    }
+
+
     protected IEnumerator LoadNextSceneAfterSFX(string sceneName)
     {
         PlayAcceptSFX();
@@ -272,14 +280,6 @@ public class PanelManager : MonoBehaviour
         SetAllPanelsInactive();
         settingsPanel.SetActive(true);
         audioSettingsPanel.SetActive(true);
-        videoSettingsSaveLoad.ClearTemporarySettings();
-    }
-    public void ShowControlsSettingsPanel()
-    {
-        PlayAcceptSFX();
-        SetAllPanelsInactive();
-        settingsPanel.SetActive(true);
-        controlsSettingsPanel.SetActive(true);
         videoSettingsSaveLoad.ClearTemporarySettings();
     }
 
