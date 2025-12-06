@@ -31,6 +31,7 @@ public class AudioSettingsSaveLoad : MonoBehaviour
         // Set the save path relative to the current folder
         string currentDirectory = Path.GetDirectoryName(Application.dataPath);
         audioSavePath = Path.Combine(currentDirectory, "Assets/PersistentSaving/jsonSaveData", "AudioSettingsData.json");
+        Debug.Log(audioSavePath);
 
         // Ensure the directory exists
         string directory = Path.GetDirectoryName(audioSavePath);
@@ -41,20 +42,34 @@ public class AudioSettingsSaveLoad : MonoBehaviour
     }
 
     // Updating the volume percentage text on slider movement.
+// Updating the volume percentage text AND the actual AudioMixer
     private void OnMasterVolumeChanged(float value)
     {
+        // Update the visual text
         MasterVolText.text = $"{Mathf.RoundToInt(value * 100f)}%";
+        
+        // FIX: Actually send the new value to the mixer
+        if(audioMixerManager != null) 
+            audioMixerManager.SetMasterVolume(value);
     }
 
     private void OnSFXVolumeChanged(float value)
     {
         SFXVolText.text = $"{Mathf.RoundToInt(value * 100f)}%";
+
+        // FIX: Actually send the new value to the mixer
+        if(audioMixerManager != null)
+            audioMixerManager.SetSFXVolume(value);
     }
 
     private void OnMusicVolumeChanged(float value)
     {
         MusicVolText.text = $"{Mathf.RoundToInt(value * 100f)}%";
-    }    
+
+        // FIX: Actually send the new value to the mixer
+        if(audioMixerManager != null)
+            audioMixerManager.SetMusicVolume(value);
+    }  
 
     // Save audio settings to JSON
     public void SaveAudioSettings()
