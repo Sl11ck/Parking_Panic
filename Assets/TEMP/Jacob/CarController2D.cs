@@ -23,6 +23,7 @@ public class CarController2D : MonoBehaviour
 
     private InputSystem_Actions _inputActions;
     private Rigidbody2D _rb;
+    public float currentSpeed => speed;
 
     [SerializeField] GameObject wheel1, wheel2;
 
