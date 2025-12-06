@@ -6,7 +6,11 @@ public class CarController2D : MonoBehaviour
     public float steeringForce = 90f;       // degrees per sec steering speed
     public float maxSteerAngle = 75f;       // clamp steering angle
     public float acceleration = 25f;        // how fast speed changes
-    public float maxSpeed = 80f;            // max car speed
+    public float maxSpeed = 2f;            // max car speed
+
+    public float minimumSpeedReq = 2f;
+
+    public float steeringDrag = 0.2f;
 
     public float drag = 0.8f;
     private float speed = 0f;
@@ -17,7 +21,7 @@ public class CarController2D : MonoBehaviour
     private InputSystem_Actions _inputActions;
     private Rigidbody2D _rb;
 
-    [SerializeField] GameObject wheels;
+    [SerializeField] GameObject wheel1, wheel2;
 
     void Awake()
     {
@@ -49,22 +53,38 @@ public class CarController2D : MonoBehaviour
         // Steering
         latentRotation += strInput * steeringForce * Time.deltaTime;
         latentRotation = Mathf.Clamp(latentRotation, -maxSteerAngle, maxSteerAngle);
-        wheels.transform.localRotation = Quaternion.Euler(
+        latentRotation -= latentRotation * _rb.linearVelocity.magnitude * steeringDrag * Time.deltaTime;
+
+        wheel1.transform.localRotation = Quaternion.Euler(
+            transform.localRotation.eulerAngles.x, 
+            transform.localRotation.eulerAngles.y,
+            latentRotation
+        );
+
+        wheel2.transform.localRotation = Quaternion.Euler(
             transform.localRotation.eulerAngles.x, 
             transform.localRotation.eulerAngles.y,
             latentRotation
         );
 
         // Acceleration / braking
-        speed += accInput * acceleration * Time.deltaTime;
-        speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
+        if (speed >= minimumSpeedReq)
+        {
+            speed += accInput * acceleration * Time.deltaTime;
+            speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
+        }
         speed -= speed * drag * Time.deltaTime;
     }
 
     void FixedUpdate()
     {
         // Apply steering to rotation
-        _rb.MoveRotation(_rb.rotation + latentRotation * Time.deltaTime * _rb.linearVelocity.magnitude);
+        float steeringSign = Mathf.Sign(speed); // +1 forward, -1 reverse
+
+        _rb.MoveRotation(
+            _rb.rotation 
+            + latentRotation * steeringSign * Time.deltaTime * _rb.linearVelocity.magnitude
+        );
 
         // Set forward velocity directly (clean top-down handling)
         _rb.linearVelocity = transform.up * speed;
