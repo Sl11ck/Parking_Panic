@@ -209,6 +209,7 @@ public class UI_Script : MonoBehaviour
         if (passPanel != null)
         {
             passPanel.SetActive(true);
+            carController.gameObject.SetActive(false);
         }
     }
 
@@ -224,6 +225,7 @@ public class UI_Script : MonoBehaviour
         if (failPanel != null)
         {
             failPanel.SetActive(true);
+            carController.gameObject.SetActive(false);
         }
     }
 
