@@ -40,7 +40,7 @@ public class Lv1_leftOnly1 : MonoBehaviour
             if (activeAnimation != null) StopCoroutine(activeAnimation);
             activeAnimation = StartCoroutine(ScaleSprite(Sign_Sprite, 1.5f, 0.01f, false));
         }
-        Sign_Sprite.transform.rotation = carCamera.transform.rotation;
+        // Sign_Sprite.transform.rotation = carCamera.transform.rotation;
     }
 
 

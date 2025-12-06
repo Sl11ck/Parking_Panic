@@ -103,11 +103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   obedience: 1
-  nodeSwitchRadius: 3
+  nodeSwitchRadius: 1.5
   isCar: 1
   slowRadius: 10
   fovAngle: 30
-  slowMultiplier: 0.2
+  slowMultiplier: 0.05
   slowLerpSpeed: 3
   animator: {fileID: 0}
   signManager: {fileID: 0}
