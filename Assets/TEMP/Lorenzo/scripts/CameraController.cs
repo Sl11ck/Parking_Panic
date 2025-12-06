@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private bool useBounds = true;
     [SerializeField] private Vector2 minBounds = new Vector2(-50f, -50f);
     [SerializeField] private Vector2 maxBounds = new Vector2(50f, 50f);
+    [SerializeField] private bool autoCalculateBoundsPadding = true; // NEW: Auto-calculate padding
 
     [Header("Parking Focus Settings")]
     [SerializeField] private float normalOrthographicSize = 10f;
@@ -21,6 +22,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool showZoomDebug = false;
+    [SerializeField] private bool showBoundsDebug = false; // NEW: Show bounds issues
 
     private Camera cam;
     private bool isFocusingOnParking = false;
@@ -63,6 +65,12 @@ public class CameraController : MonoBehaviour
 
         targetOrthographicSize = normalOrthographicSize;
         cam.orthographicSize = normalOrthographicSize;
+
+        // Validate bounds on startup
+        if (useBounds && autoCalculateBoundsPadding)
+        {
+            ValidateAndAdjustBounds();
+        }
     }
 
     void LateUpdate()
@@ -88,14 +96,10 @@ public class CameraController : MonoBehaviour
             targetOrthographicSize = normalOrthographicSize;
         }
 
-        // Apply bounds if enabled
+        // Apply bounds if enabled - USE TARGET ORTHOGRAPHIC SIZE for proper clamping
         if (useBounds)
         {
-            float camHeight = cam.orthographicSize;
-            float camWidth = camHeight * cam.aspect;
-
-            desiredPosition.x = Mathf.Clamp(desiredPosition.x, minBounds.x + camWidth, maxBounds.x - camWidth);
-            desiredPosition.y = Mathf.Clamp(desiredPosition.y, minBounds.y + camHeight, maxBounds.y - camHeight);
+            desiredPosition = ApplyBounds(desiredPosition, targetOrthographicSize);
         }
 
         // Smoothly move camera
@@ -103,6 +107,68 @@ public class CameraController : MonoBehaviour
 
         // Smoothly adjust zoom
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetOrthographicSize, zoomSpeed * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// Apply bounds clamping to a desired position
+    /// </summary>
+    private Vector3 ApplyBounds(Vector3 desiredPosition, float orthographicSize)
+    {
+        float camHeight = orthographicSize;
+        float camWidth = camHeight * cam.aspect;
+
+        // Calculate the actual usable area
+        float minX = minBounds.x + camWidth;
+        float maxX = maxBounds.x - camWidth;
+        float minY = minBounds.y + camHeight;
+        float maxY = maxBounds.y - camHeight;
+
+        // Check if bounds are valid
+        if (minX >= maxX || minY >= maxY)
+        {
+            if (showBoundsDebug)
+            {
+                Debug.LogWarning($"CameraController: Bounds too small! Camera view ({camWidth * 2}x{camHeight * 2}) doesn't fit in bounds ({maxBounds.x - minBounds.x}x{maxBounds.y - minBounds.y})");
+            }
+
+            // If bounds are too small, center camera in bounds and don't clamp
+            if (autoCalculateBoundsPadding)
+            {
+                desiredPosition.x = (minBounds.x + maxBounds.x) / 2f;
+                desiredPosition.y = (minBounds.y + maxBounds.y) / 2f;
+            }
+            return desiredPosition;
+        }
+
+        // Apply clamping
+        desiredPosition.x = Mathf.Clamp(desiredPosition.x, minX, maxX);
+        desiredPosition.y = Mathf.Clamp(desiredPosition.y, minY, maxY);
+
+        return desiredPosition;
+    }
+
+    /// <summary>
+    /// Validate bounds are large enough for the camera view
+    /// </summary>
+    private void ValidateAndAdjustBounds()
+    {
+        float camHeight = normalOrthographicSize;
+        float camWidth = camHeight * cam.aspect;
+
+        float requiredWidth = camWidth * 2f;
+        float requiredHeight = camHeight * 2f;
+
+        float currentWidth = maxBounds.x - minBounds.x;
+        float currentHeight = maxBounds.y - minBounds.y;
+
+        if (currentWidth < requiredWidth || currentHeight < requiredHeight)
+        {
+            Debug.LogWarning($"CameraController: Bounds ({currentWidth}x{currentHeight}) are smaller than camera view ({requiredWidth}x{requiredHeight}). Consider increasing bounds.");
+        }
+        else
+        {
+            Debug.Log($"CameraController: Bounds validated. Camera view: {requiredWidth:F1}x{requiredHeight:F1}, Bounds: {currentWidth:F1}x{currentHeight:F1}");
+        }
     }
 
     /// <summary>
@@ -212,6 +278,11 @@ public class CameraController : MonoBehaviour
     {
         minBounds = min;
         maxBounds = max;
+
+        if (autoCalculateBoundsPadding)
+        {
+            ValidateAndAdjustBounds();
+        }
     }
 
     /// <summary>
@@ -238,16 +309,30 @@ public class CameraController : MonoBehaviour
         Vector3 size = new Vector3(maxBounds.x - minBounds.x, maxBounds.y - minBounds.y, 0f);
         Gizmos.DrawWireCube(center, size);
 
-        // Draw current camera view
-        if (Application.isPlaying && cam != null && cam.orthographic)
+        // Draw camera view constraints (the actual usable area)
+        if (cam != null && cam.orthographic)
         {
-            Gizmos.color = isFocusingOnParking ? Color.yellow : Color.green;
-            float camHeight = cam.orthographicSize * 2f;
+            float camHeight = normalOrthographicSize;
             float camWidth = camHeight * cam.aspect;
-            Gizmos.DrawWireCube(transform.position, new Vector3(camWidth, camHeight, 0f));
+
+            // Draw the constrained bounds (where camera center can actually move)
+            Gizmos.color = Color.yellow;
+            Vector3 constrainedCenter = center;
+            Vector3 constrainedSize = new Vector3(
+                Mathf.Max(0, size.x - camWidth * 2f),
+                Mathf.Max(0, size.y - camHeight * 2f),
+                0f
+            );
+            Gizmos.DrawWireCube(constrainedCenter, constrainedSize);
+
+            // Draw current camera view
+            Gizmos.color = isFocusingOnParking ? Color.yellow : Color.green;
+            float currentCamHeight = Application.isPlaying ? cam.orthographicSize * 2f : camHeight * 2f;
+            float currentCamWidth = Application.isPlaying ? cam.orthographicSize * cam.aspect * 2f : camWidth * 2f;
+            Gizmos.DrawWireCube(transform.position, new Vector3(currentCamWidth, currentCamHeight, 0f));
 
             // Draw parking spot bounds if focusing
-            if (isFocusingOnParking && hasParkingSpotBounds)
+            if (Application.isPlaying && isFocusingOnParking && hasParkingSpotBounds)
             {
                 Gizmos.color = Color.magenta;
                 Gizmos.DrawWireCube(parkingSpotBounds.center, parkingSpotBounds.size);
