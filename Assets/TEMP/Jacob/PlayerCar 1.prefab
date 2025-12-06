@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4074610025871620067}
   m_Layer: 0
   m_Name: PlayerCar 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   maxGear: 4
   maxSpeedIncreasePerGear: 3
   gearPowerLoss: 0.1
-  minReqStrictness: 0.7
+  minReqStrictness: 0.8
 --- !u!50 &8377600369826581078
 Rigidbody2D:
   serializedVersion: 5
