@@ -54,9 +54,16 @@ public class GearShifting : MonoBehaviour
         SetCarGear();
     }
 
-    public int GetGear()
+    public string GetGear()
     {
-        return currentGear;
+        if(_carController.currentSpeed > 0)
+        {
+            return currentGear.ToString();
+        } else
+        {
+            return "R";
+        }
+        
     }
 
     void SetCarGear()
