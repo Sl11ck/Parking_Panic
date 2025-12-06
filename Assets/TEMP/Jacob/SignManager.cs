@@ -24,7 +24,7 @@ public class SignManager : MonoBehaviour
     {
         if (!testEnded)
         {
-            _ui.UpdateSpeedometer(GetCarSpeed());
+            _ui.UpdateSpeedometer(GetCarSpeed()); 
             _ui.UpdateGear(GetCurrentGear());
         }
 
