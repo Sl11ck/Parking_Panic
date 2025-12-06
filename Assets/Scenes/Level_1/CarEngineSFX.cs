@@ -79,7 +79,7 @@ public class CarEngineSFXPlayer : MonoBehaviour
         if (sfxTimer >= randomInterval)
         {
             // Play sound with randomized pitch
-            SFXManager.instance.PlaySFXClip(carEngineSFX, transform, 0.3f, randomPitch);
+            SFXManager.instance.PlaySFXClip(carEngineSFX, transform, 0.2f, randomPitch);
             
             sfxTimer = 0f; 
         }
