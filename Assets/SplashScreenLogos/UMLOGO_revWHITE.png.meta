@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 3d82ac6111e4bf94b94c2f63fd71f14a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6771239224939799744
+    second: UMLOGO_revWHITE_0
+  - first:
+      213: -8735504634793693369
+    second: UMLOGO_revWHITE_1
+  - first:
+      213: -3556549263074481565
+    second: UMLOGO_revWHITE_2
+  - first:
+      213: 83169697071679549
+    second: UMLOGO_revWHITE_3
+  - first:
+      213: -7542857168605229209
+    second: UMLOGO_revWHITE_4
+  - first:
+      213: -6027266972396030170
+    second: UMLOGO_revWHITE_5
+  - first:
+      213: -539133535398210885
+    second: UMLOGO_revWHITE_6
+  - first:
+      213: -7138663099632253976
+    second: UMLOGO_revWHITE_7
+  - first:
+      213: -6955526500782005093
+    second: UMLOGO_revWHITE_8
+  - first:
+      213: -6284647292799448223
+    second: UMLOGO_revWHITE_9
+  - first:
+      213: -9176812069252486688
+    second: UMLOGO_revWHITE_10
+  - first:
+      213: -6973244216383998434
+    second: UMLOGO_revWHITE_11
+  - first:
+      213: -7493424152304178077
+    second: UMLOGO_revWHITE_12
+  - first:
+      213: 1985175132635836968
+    second: UMLOGO_revWHITE_13
+  - first:
+      213: 91772466682996772
+    second: UMLOGO_revWHITE_14
+  - first:
+      213: -9109277130929682385
+    second: UMLOGO_revWHITE_15
+  - first:
+      213: -1453880147044262711
+    second: UMLOGO_revWHITE_16
+  - first:
+      213: -5373501812733151802
+    second: UMLOGO_revWHITE_17
+  - first:
+      213: -2822848652114822272
+    second: UMLOGO_revWHITE_18
+  - first:
+      213: 447692696882170399
+    second: UMLOGO_revWHITE_19
+  - first:
+      213: 7000402979705068270
+    second: UMLOGO_revWHITE_20
+  - first:
+      213: 7870057964317467716
+    second: UMLOGO_revWHITE_21
+  - first:
+      213: 1847409925439316026
+    second: UMLOGO_revWHITE_22
+  - first:
+      213: 6341456018754830124
+    second: UMLOGO_revWHITE_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 59
+        width: 115
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c46ab3133648fd50800000000000000
+      internalID: 6771239224939799744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_1
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 131
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74fe75d31d045c680800000000000000
+      internalID: -8735504634793693369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 131
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36aa444e94994aec0800000000000000
+      internalID: -3556549263074481565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_3
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 158
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38c80a166a772100800000000000000
+      internalID: 83169697071679549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_4
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 158
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76fc6c17e53625790800000000000000
+      internalID: -7542857168605229209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_5
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 131
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 627f3e75f98da5ca0800000000000000
+      internalID: -6027266972396030170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_6
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 157
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2d610f7ec9488f0800000000000000
+      internalID: -539133535398210885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_7
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 143
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e30b3fabbf5eec90800000000000000
+      internalID: -7138663099632253976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_8
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 131
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b94a21fdf71097f90800000000000000
+      internalID: -6955526500782005093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_9
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 131
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b811ea59278c8a0800000000000000
+      internalID: -6284647292799448223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 131
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e920b93b0a65a080800000000000000
+      internalID: -9176812069252486688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_11
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 131
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e16726eb45f0a3f90800000000000000
+      internalID: -6973244216383998434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_12
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 131
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ca3927f62020890800000000000000
+      internalID: -7493424152304178077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_13
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 131
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 822b2b5e342cc8b10800000000000000
+      internalID: 1985175132635836968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_14
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 131
+        width: 9
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4282dcc729a064100800000000000000
+      internalID: 91772466682996772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_15
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 131
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28c85266b8559180800000000000000
+      internalID: -9109277130929682385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_16
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 87
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc1f6195b7c2dbe0800000000000000
+      internalID: -1453880147044262711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_17
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 87
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c57f14429c7d65b0800000000000000
+      internalID: -5373501812733151802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_18
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 105
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b71046b1a33d8d0800000000000000
+      internalID: -2822848652114822272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_19
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 87
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ac236c226863600800000000000000
+      internalID: 447692696882170399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_20
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 87
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea18e99b6d662160800000000000000
+      internalID: 7000402979705068270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_21
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 87
+        width: 8
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44460ec6500183d60800000000000000
+      internalID: 7870057964317467716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_22
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 87
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3067580a8153a910800000000000000
+      internalID: 1847409925439316026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UMLOGO_revWHITE_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 87
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2ff4ac86a0610850800000000000000
+      internalID: 6341456018754830124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UMLOGO_revWHITE_0: 6771239224939799744
+      UMLOGO_revWHITE_1: -8735504634793693369
+      UMLOGO_revWHITE_10: -9176812069252486688
+      UMLOGO_revWHITE_11: -6973244216383998434
+      UMLOGO_revWHITE_12: -7493424152304178077
+      UMLOGO_revWHITE_13: 1985175132635836968
+      UMLOGO_revWHITE_14: 91772466682996772
+      UMLOGO_revWHITE_15: -9109277130929682385
+      UMLOGO_revWHITE_16: -1453880147044262711
+      UMLOGO_revWHITE_17: -5373501812733151802
+      UMLOGO_revWHITE_18: -2822848652114822272
+      UMLOGO_revWHITE_19: 447692696882170399
+      UMLOGO_revWHITE_2: -3556549263074481565
+      UMLOGO_revWHITE_20: 7000402979705068270
+      UMLOGO_revWHITE_21: 7870057964317467716
+      UMLOGO_revWHITE_22: 1847409925439316026
+      UMLOGO_revWHITE_23: 6341456018754830124
+      UMLOGO_revWHITE_3: 83169697071679549
+      UMLOGO_revWHITE_4: -7542857168605229209
+      UMLOGO_revWHITE_5: -6027266972396030170
+      UMLOGO_revWHITE_6: -539133535398210885
+      UMLOGO_revWHITE_7: -7138663099632253976
+      UMLOGO_revWHITE_8: -6955526500782005093
+      UMLOGO_revWHITE_9: -6284647292799448223
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

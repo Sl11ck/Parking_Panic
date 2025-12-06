@@ -10,7 +10,7 @@ public struct NodeWeightPair
 
 public class PedestrianNode : MonoBehaviour
 {
-    public GameObject spawnObject;
+    public GameObject[] spawnObjects;
     public float spawnRate = 1f;
     public bool isDespawner = false;
     public List<NodeWeightPair> nodeWeightsList = new();
@@ -109,8 +109,9 @@ public class PedestrianNode : MonoBehaviour
 
     void Update()
     {
-        if (spawnObject)
+        if (spawnObjects.Length > 0)
         {
+            GameObject spawnObject = spawnObjects[Random.Range(0, spawnObjects.Length)];
             if(cooldown <= 0f)
             {
                 Instantiate(spawnObject, transform.position, Quaternion.identity);

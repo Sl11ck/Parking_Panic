@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 7f8ef3835c10ff54f95a7224a1196bb4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6384445802041733252
+    second: Gaming_Malta_0
+  - first:
+      213: 7944261318018021939
+    second: Gaming_Malta_1
+  - first:
+      213: -1819938623841926179
+    second: Gaming_Malta_2
+  - first:
+      213: 2222348176113621558
+    second: Gaming_Malta_3
+  - first:
+      213: -4494583844842010020
+    second: Gaming_Malta_4
+  - first:
+      213: -4703897331122386299
+    second: Gaming_Malta_5
+  - first:
+      213: -3064685460550986901
+    second: Gaming_Malta_6
+  - first:
+      213: -2450590120963864749
+    second: Gaming_Malta_7
+  - first:
+      213: 4597464861315116821
+    second: Gaming_Malta_8
+  - first:
+      213: 761794095243684514
+    second: Gaming_Malta_9
+  - first:
+      213: 7266105202885684608
+    second: Gaming_Malta_10
+  - first:
+      213: 125318012944969727
+    second: Gaming_Malta_11
+  - first:
+      213: -8679377826249736720
+    second: Gaming_Malta_12
+  - first:
+      213: 7607382476446554749
+    second: Gaming_Malta_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gaming_Malta_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 317
+        width: 436
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f81998e54e567a0800000000000000
+      internalID: -6384445802041733252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_1
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 302
+        width: 110
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33a3757049faf3e60800000000000000
+      internalID: 7944261318018021939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 149
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd383ecc6774eb6e0800000000000000
+      internalID: -1819938623841926179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 242
+        width: 50
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a5d7444ed57de10800000000000000
+      internalID: 2222348176113621558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_4
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 242
+        width: 57
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5a8bf27ec700a1c0800000000000000
+      internalID: -4494583844842010020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_5
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 139
+        width: 67
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58aca86bc4668beb0800000000000000
+      internalID: -4703897331122386299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 242
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63dd8f9fcc0875d0800000000000000
+      internalID: -3064685460550986901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_7
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 160
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3570eddc441cdfdd0800000000000000
+      internalID: -2450590120963864749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_8
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 9
+        width: 247
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f2706dee97dcf30800000000000000
+      internalID: 4597464861315116821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_9
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 242
+        width: 9
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa6df681bf629a00800000000000000
+      internalID: 761794095243684514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 160
+        width: 54
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d6e9e3f2466d460800000000000000
+      internalID: 7266105202885684608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_11
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 242
+        width: 49
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fffea8d91183db100800000000000000
+      internalID: 125318012944969727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_12
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 242
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd7bf23ad7ac8780800000000000000
+      internalID: -8679377826249736720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaming_Malta_13
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 226
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ad0238e0ad29960800000000000000
+      internalID: 7607382476446554749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gaming_Malta_0: -6384445802041733252
+      Gaming_Malta_1: 7944261318018021939
+      Gaming_Malta_10: 7266105202885684608
+      Gaming_Malta_11: 125318012944969727
+      Gaming_Malta_12: -8679377826249736720
+      Gaming_Malta_13: 7607382476446554749
+      Gaming_Malta_2: -1819938623841926179
+      Gaming_Malta_3: 2222348176113621558
+      Gaming_Malta_4: -4494583844842010020
+      Gaming_Malta_5: -4703897331122386299
+      Gaming_Malta_6: -3064685460550986901
+      Gaming_Malta_7: -2450590120963864749
+      Gaming_Malta_8: 4597464861315116821
+      Gaming_Malta_9: 761794095243684514
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
