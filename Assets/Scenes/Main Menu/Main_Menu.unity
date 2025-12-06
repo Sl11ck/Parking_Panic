@@ -9387,7 +9387,7 @@ MonoBehaviour:
 
 
     Parking:
-    Stay in a parking space for over two seconds to complete a level.
+    Stay in the highlighted parking space for over two seconds to complete a level.
 
 '
   m_isRightToLeft: 0
