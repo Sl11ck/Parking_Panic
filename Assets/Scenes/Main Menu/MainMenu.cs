@@ -16,6 +16,7 @@ public class PanelManager : MonoBehaviour
     public GameObject videoSettingsPanel;
     public GameObject audioSettingsPanel;
     public GameObject creditsPanel;
+    public GameObject quickStartPanel;
 
     [Header("Start Panel Element")]
     public TextMeshProUGUI StartScreenText;
@@ -26,6 +27,9 @@ public class PanelManager : MonoBehaviour
     public Button settingsBtn;
     public Button creditsBtn;
     public Button exitBtn;
+
+    [Header("Quickstart Panel Buttons")]
+    public Button proceedToPlayBtn;
 
     [Header("Play Panel Buttons")]
     public Button Lvl1ModeBtn;
@@ -70,7 +74,7 @@ public class PanelManager : MonoBehaviour
         InputSystem.onAnyButtonPress.CallOnce(ctrl => StartToMainPanelnMusic());
 
         // Set up Main Panel button listeners
-        playBtn.onClick.AddListener(ShowPlayPanel);
+        playBtn.onClick.AddListener(GoToQuickStartPanel);
         settingsBtn.onClick.AddListener(ShowSettingsPanel);
         creditsBtn.onClick.AddListener(ShowCreditsPanel);
         exitBtn.onClick.AddListener(ExitApplication);
@@ -78,6 +82,10 @@ public class PanelManager : MonoBehaviour
         SetupButtonHover(settingsBtn);
         SetupButtonHover(creditsBtn);
         SetupButtonHover(exitBtn);
+
+        // Set up Quickstart button listeners
+        proceedToPlayBtn.onClick.AddListener(ShowPlayPanel);
+        SetupButtonHover(proceedToPlayBtn);
 
         // Set up Play Panel button listeners
         Lvl1ModeBtn.onClick.AddListener(LoadLvl1Mode);
@@ -165,6 +173,7 @@ public class PanelManager : MonoBehaviour
         playPanel.SetActive(false);
         videoSettingsPanel.SetActive(false);
         audioSettingsPanel.SetActive(false);
+        quickStartPanel.SetActive(false);
     }
 
     public void ShowMainPanel()
@@ -246,6 +255,19 @@ public class PanelManager : MonoBehaviour
         ShowMainPanel();
     }
     // PLAY CONTROL SECTION      END
+
+
+    // QUICKSTART CONTROL SECTION      START
+
+    public void GoToQuickStartPanel()
+    {
+        PlayAcceptSFX();
+        SetAllPanelsInactive();
+        quickStartPanel.SetActive(true);
+    }
+
+    // QUICKSTART CONTROL SECTION      END
+
 
     // SETTINGS CONTROL SECTION      START
     public void ShowSettingsPanel()

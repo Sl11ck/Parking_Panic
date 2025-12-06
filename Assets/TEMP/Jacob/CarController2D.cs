@@ -23,10 +23,17 @@ public class CarController2D : MonoBehaviour
 
     [SerializeField] GameObject wheel1, wheel2;
 
+    private SignManager signManager;
+
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
         TryGetComponent(out _rb);
+    }
+
+    void Start()
+    {
+        signManager = GameObject.FindGameObjectWithTag("SignManager").GetComponent<SignManager>();
     }
 
     private void OnEnable()
@@ -88,5 +95,13 @@ public class CarController2D : MonoBehaviour
 
         // Set forward velocity directly (clean top-down handling)
         _rb.linearVelocity = transform.up * speed;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("MinorCollisions"))
+        {
+            signManager.RegisterMistake();
+        }
     }
 }
