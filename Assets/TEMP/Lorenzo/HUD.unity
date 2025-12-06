@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.8313726, g: 0.14901961, b: 0.14509805, a: 1}
+  m_EffectColor: {r: 0.8392157, g: 0.14901961, b: 0.13333334, a: 1}
   m_EffectDistance: {x: 7, y: 5}
   m_UseGraphicAlpha: 1
 --- !u!1 &698186053
@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 826603804}
   - component: {fileID: 826603806}
   - component: {fileID: 826603805}
+  - component: {fileID: 826603807}
   m_Layer: 5
   m_Name: Dial
   m_TagString: Untagged
@@ -662,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2712067801504593976, guid: 0a69f27d1c095e34aac10b1984a41c1d, type: 3}
+  m_Sprite: {fileID: 8565227677889342765, guid: af2a338d658e5ea419ddbf5325150ccc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -680,6 +681,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826603803}
   m_CullTransparentMesh: 1
+--- !u!114 &826603807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826603803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.8392157, g: 0.14901961, b: 0.13333334, a: 1}
+  m_EffectDistance: {x: 2.5, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &939912828
 GameObject:
   m_ObjectHideFlags: 0
