@@ -103,7 +103,7 @@ public class CameraController : MonoBehaviour
             Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
             foreach (Canvas canvas in canvases)
             {
-                if (canvas.gameObject.CompareTag("UI") || canvas.gameObject.name.Contains("UI"))
+                if (canvas.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
                     uiContainer = canvas.gameObject;
                     if (showIntroDebug)
