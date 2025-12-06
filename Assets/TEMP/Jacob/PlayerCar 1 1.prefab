@@ -233,6 +233,11 @@ MonoBehaviour:
   minimumSpeedReq: -0.7
   steeringDrag: 0.8
   drag: 0.8
+  carSpritesPaintChip:
+  - {fileID: 1506073249, guid: 23c379f23082816408589cb41f0ad5b7, type: 3}
+  - {fileID: 1506073249, guid: 23c379f23082816408589cb41f0ad5b7, type: 3}
+  - {fileID: -721439731366112390, guid: 9549bd4152a39424fbbacc66072bd255, type: 3}
+  - {fileID: -1931297079, guid: 9549bd4152a39424fbbacc66072bd255, type: 3}
   wheel1: {fileID: 840209610977788021}
   wheel2: {fileID: 9171552926855052908}
 --- !u!114 &3167709071434686525

@@ -16,6 +16,9 @@ public class CarController2D : MonoBehaviour
     private float speed = 0f;
     private float latentRotation;
 
+    private int paintChips = 0;
+    public Sprite[] carSpritesPaintChip;
+
     private Vector2 moveInput;
 
     private InputSystem_Actions _inputActions;
@@ -102,6 +105,9 @@ public class CarController2D : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("MinorCollisions"))
         {
             signManager.RegisterMistake();
+            paintChips++;
+            paintChips = Mathf.Clamp(paintChips, 0, carSpritesPaintChip.Length - 1);
+            GetComponent<SpriteRenderer>().sprite = carSpritesPaintChip[paintChips];
         }
     }
 }
