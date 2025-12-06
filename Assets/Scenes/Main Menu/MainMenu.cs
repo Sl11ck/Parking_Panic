@@ -214,23 +214,23 @@ public class PanelManager : MonoBehaviour
 
     public void LoadLvl1Mode()
     {
-        StartCoroutine(LoadNextSceneAfterSFX("Level1"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level_1"));
     }
     public void LoadLvl2Mode()
     {
-        StartCoroutine(LoadNextSceneAfterSFX("Level2"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level_2"));
     }
     public void LoadLvl3Mode()
     {
-        StartCoroutine(LoadNextSceneAfterSFX("Level3"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level_3"));
     }
     public void LoadLvl4Mode()
     {
-        StartCoroutine(LoadNextSceneAfterSFX("Level4"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level_4"));
     }
     public void LoadLvl5Mode()
     {
-        StartCoroutine(LoadNextSceneAfterSFX("Level5"));
+        StartCoroutine(LoadNextSceneAfterSFX("Level_5"));
     }
 
 

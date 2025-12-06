@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class UI_Script : MonoBehaviour
 {
@@ -20,7 +23,6 @@ public class UI_Script : MonoBehaviour
     [SerializeField] private Sprite bareCheckboardSprite;
     [SerializeField] private Sprite passedCheckboardSprite;
     [SerializeField] private Sprite failedCheckboardSprite;
-    [SerializeField] private int maxMistakes = 5;
     [SerializeField] private float scaledUpSize = 2f; // How much to scale up (2 = double size)
     [SerializeField] private float scaleAnimationDuration = 0.5f; // Duration of scale animation
     [SerializeField] private Vector2 centerOffset = Vector2.zero; // Offset from center (e.g., (0, 100) moves up 100 pixels)
@@ -37,22 +39,12 @@ public class UI_Script : MonoBehaviour
     [SerializeField] private CarController2D carController;
     [SerializeField] private GearShifting gearShifting;
 
-    [Header("Testing Mode")]
-    [SerializeField] private bool enableTestMode = false;
-    [SerializeField][Range(-80f, 80f)] private float testSpeed = 0f;
-    [SerializeField][Range(1, 5)] private int testGear = 1;
-
-    [Header("Test Controls")]
-    [SerializeField] private bool testAddMistake = false; // Check this to add a mistake
-    [SerializeField] private bool testCompleteObjective = false; // Check this to complete objective
-    [SerializeField] private bool testResetTest = false; // Check this to reset the test
+    // (Testing/gameplay state moved to SignManager.)
 
     [Header("Scene Management")]
-    [SerializeField] private string currentLevelSceneName = "Level1"; // Scene to reload on retry
-    [SerializeField] private string nextLevelSceneName = "Level2"; // Next scene to load
+    [SerializeField] private SceneReference currentLevelScene; // Scene to reload on retry
+    [SerializeField] private SceneReference nextLevelScene; // Next scene to load
 
-    private int currentMistakes = 0;
-    private bool testEnded = false;
     private int currentGear = 0; // Current gear being displayed
 
     // Store original checkboard transform values
@@ -98,51 +90,23 @@ public class UI_Script : MonoBehaviour
 
     void Update()
     {
-        if (!testEnded)
-        {
-            UpdateSpeedometer();
-            UpdateGear();
-        }
-
-        // Handle test controls
-        HandleTestControls();
+        // UI updates each frame (reads current car/gear if references are set)
+        UpdateSpeedometer();
+        UpdateGear();
     }
 
-    private void HandleTestControls()
-    {
-        // Test adding mistakes
-        if (testAddMistake)
-        {
-            testAddMistake = false; // Reset the toggle
-            RegisterMistake();
-            Debug.Log($"Test: Added mistake. Current mistakes: {currentMistakes}/{maxMistakes}");
-        }
-
-        // Test completing objective
-        if (testCompleteObjective)
-        {
-            testCompleteObjective = false; // Reset the toggle
-            CompleteObjective();
-            Debug.Log("Test: Completed objective");
-        }
-
-        // Test resetting
-        if (testResetTest)
-        {
-            testResetTest = false; // Reset the toggle
-            ResetTest();
-            Debug.Log("Test: Reset test");
-        }
-    }
-
+    // Compatibility: no-arg version reads car if available
     private void UpdateSpeedometer()
+    {
+        float speed = GetCarSpeed();
+        UpdateSpeedometer(speed);
+    }
+
+    // UI-only: caller provides current speed
+    public void UpdateSpeedometer(float currentSpeed)
     {
         if (needleTransform == null) return;
 
-        // Get current speed (already returns magnitude)
-        float currentSpeed = GetCarSpeed();
-
-        // Calculate needle angle based on speed (no need to use Abs since GetCarSpeed returns magnitude)
         float speedPercentage = Mathf.Clamp01(currentSpeed / maxSpeedValue);
         float targetAngle = Mathf.Lerp(minSpeedAngle, maxSpeedAngle, speedPercentage);
 
@@ -156,10 +120,18 @@ public class UI_Script : MonoBehaviour
 
     private void UpdateGear()
     {
-        // Get gear from GearShifting component
         int newGear = GetCurrentGear();
 
-        // Only update if gear changed
+        if (newGear != currentGear)
+        {
+            currentGear = newGear;
+            UpdateGearDisplay();
+        }
+    }
+
+    // External caller (game logic) can set gear to display using this method
+    public void UpdateGear(int newGear)
+    {
         if (newGear != currentGear)
         {
             currentGear = newGear;
@@ -169,16 +141,15 @@ public class UI_Script : MonoBehaviour
 
     private int GetCurrentGear()
     {
-        // In test mode, use test gear
-        if (enableTestMode)
-        {
-            return testGear;
-        }
-
-        // Get gear from GearShifting component using reflection (since currentGear is private)
+        // Try calling a public GetGear() method if present, otherwise fall back to private field
         if (gearShifting != null)
         {
-            // Use reflection to access private field
+            var method = typeof(GearShifting).GetMethod("GetGear", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            if (method != null)
+            {
+                return (int)method.Invoke(gearShifting, null);
+            }
+
             var fieldInfo = typeof(GearShifting).GetField("currentGear", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (fieldInfo != null)
             {
@@ -186,7 +157,7 @@ public class UI_Script : MonoBehaviour
             }
         }
 
-        return 1; // Default to first gear if no GearShifting component
+        return 1; // Default to first gear if unavailable
     }
 
     private void UpdateGearDisplay()
@@ -200,12 +171,6 @@ public class UI_Script : MonoBehaviour
 
     private float GetCarSpeed()
     {
-        // Returns magnitude (absolute value) for speedometer display
-        if (enableTestMode)
-        {
-            return Mathf.Abs(testSpeed);
-        }
-
         if (carController != null)
         {
             Rigidbody2D rb = carController.GetComponent<Rigidbody2D>();
@@ -217,98 +182,57 @@ public class UI_Script : MonoBehaviour
         return 0f;
     }
 
-    /// <summary>
-    /// Call this method when the player makes a mistake
-    /// </summary>
-    public void RegisterMistake()
-    {
-        if (testEnded) return;
-
-        currentMistakes++;
-        UpdateCheckboard();
-
-        // Add visual mistake marker
-        if (mistakeMarkPrefab != null && mistakeMarkerContainer != null)
-        {
-            Instantiate(mistakeMarkPrefab, mistakeMarkerContainer);
-        }
-
-        // Check if player has failed
-        if (currentMistakes >= maxMistakes)
-        {
-            FailTest();
-        }
-    }
-
-    /// <summary>
-    /// Call this method when the player reaches the objective
-    /// </summary>
-    public void CompleteObjective()
-    {
-        if (testEnded) return;
-
-        if (currentMistakes < maxMistakes)
-        {
-            PassTest();
-        }
-        else
-        {
-            FailTest();
-        }
-    }
-
-    private void UpdateCheckboard()
+    // Update the checkboard sprite. `isFailed` true => failed sprite; false => bare.
+    public void UpdateCheckboard(bool isFailed)
     {
         if (checkboardImage == null) return;
 
-        if (currentMistakes >= maxMistakes)
-        {
-            checkboardImage.sprite = failedCheckboardSprite;
-        }
-        else
-        {
-            checkboardImage.sprite = bareCheckboardSprite;
-        }
+        checkboardImage.sprite = isFailed ? failedCheckboardSprite : bareCheckboardSprite;
     }
 
-    private void PassTest()
+    // Compatibility no-arg UpdateCheckboard
+    public void UpdateCheckboard()
     {
-        testEnded = true;
+        UpdateCheckboard(false);
+    }
 
+    // Presentational methods — UI only
+    public void ShowPassedUI()
+    {
         if (checkboardImage != null && passedCheckboardSprite != null)
         {
             checkboardImage.sprite = passedCheckboardSprite;
         }
 
-        // Animate checkboard to center and scale up
         AnimateCheckboardToCenter();
 
         if (passPanel != null)
         {
             passPanel.SetActive(true);
         }
-
-        Debug.Log("Test Passed!");
     }
 
-    private void FailTest()
+    public void ShowFailedUI()
     {
-        testEnded = true;
-
         if (checkboardImage != null && failedCheckboardSprite != null)
         {
             checkboardImage.sprite = failedCheckboardSprite;
         }
 
-        // Animate checkboard to center and scale up
         AnimateCheckboardToCenter();
 
         if (failPanel != null)
         {
             failPanel.SetActive(true);
         }
+    }
 
-        Debug.Log("Test Failed!");
+    public void AddMistakeMark()
+    {
+        if (mistakeMarkPrefab != null && mistakeMarkerContainer != null)
+        {
+            Instantiate(mistakeMarkPrefab, mistakeMarkerContainer);
+        }
     }
 
     private void AnimateCheckboardToCenter()
@@ -376,8 +300,6 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void ResetTest()
     {
-        currentMistakes = 0;
-        testEnded = false;
         currentGear = 0;
 
         // Reset checkboard to original position and scale
@@ -414,13 +336,13 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void RetryCurrentLevel()
     {
-        if (!string.IsNullOrEmpty(currentLevelSceneName))
+        if (currentLevelScene != null && !string.IsNullOrEmpty(currentLevelScene.SceneName))
         {
-            SceneManager.LoadScene(currentLevelSceneName);
+            SceneManager.LoadScene(currentLevelScene.SceneName);
         }
         else
         {
-            Debug.LogError("Current level scene name not configured!");
+            Debug.LogError("UI_Script: Current level scene is not assigned!");
         }
     }
 
@@ -429,19 +351,39 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void LoadConfiguredNextLevel()
     {
-        if (!string.IsNullOrEmpty(nextLevelSceneName))
+        if (nextLevelScene != null && !string.IsNullOrEmpty(nextLevelScene.SceneName))
         {
-            SceneManager.LoadScene(nextLevelSceneName);
+            SceneManager.LoadScene(nextLevelScene.SceneName);
         }
         else
         {
-            Debug.LogError("Next level scene name not configured!");
+            Debug.LogError("UI_Script: Next level scene is not assigned!");
         }
     }
+}
 
-    // Public accessors
-    public int CurrentMistakes => currentMistakes;
-    public int MaxMistakes => maxMistakes;
-    public bool IsTestEnded => testEnded;
-    public int CurrentGear => currentGear;
+[System.Serializable]
+public class SceneReference
+{
+#if UNITY_EDITOR
+    [SerializeField] private Object sceneAsset;
+#endif
+    [SerializeField] private string sceneName;
+
+    public string SceneName => sceneName;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (sceneAsset != null)
+        {
+            string path = AssetDatabase.GetAssetPath(sceneAsset);
+            sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
+        }
+        else
+        {
+            sceneName = string.Empty;
+        }
+    }
+#endif
 }
