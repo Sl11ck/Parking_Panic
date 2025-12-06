@@ -17,6 +17,8 @@ public class CarController2D : MonoBehaviour
     private InputSystem_Actions _inputActions;
     private Rigidbody2D _rb;
 
+    [SerializeField] GameObject wheels;
+
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
@@ -47,6 +49,11 @@ public class CarController2D : MonoBehaviour
         // Steering
         latentRotation += strInput * steeringForce * Time.deltaTime;
         latentRotation = Mathf.Clamp(latentRotation, -maxSteerAngle, maxSteerAngle);
+        wheels.transform.localRotation = Quaternion.Euler(
+            transform.localRotation.eulerAngles.x, 
+            transform.localRotation.eulerAngles.y,
+            latentRotation
+        );
 
         // Acceleration / braking
         speed += accInput * acceleration * Time.deltaTime;
