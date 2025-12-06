@@ -87,8 +87,8 @@ public class GearShifting : MonoBehaviour
 
     void SetCarGear()
     {
-        _carController.maxSpeed = initialMaxSpeed + maxSpeedIncreasePerGear * currentGear;
-        _carController.acceleration = initialAcceleration / (currentGear * gearPowerLoss);
-        _carController.steeringForce = initialSteeringForce / (currentGear * gearPowerLoss);
+        _carController.maxSpeed = initialMaxSpeed + maxSpeedIncreasePerGear * (currentGear - 1);
+        _carController.acceleration = initialAcceleration - initialAcceleration * (currentGear - 1) * gearPowerLoss;
+        _carController.steeringForce = initialSteeringForce - initialSteeringForce * (currentGear - 1) * gearPowerLoss;
     }
 }
