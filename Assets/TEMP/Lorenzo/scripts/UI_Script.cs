@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class UI_Script : MonoBehaviour
 {
@@ -48,8 +51,8 @@ public class UI_Script : MonoBehaviour
     [SerializeField] private bool testResetTest = false; // Check this to reset the test
 
     [Header("Scene Management")]
-    [SerializeField] private string currentLevelSceneName = "Level1"; // Scene to reload on retry
-    [SerializeField] private string nextLevelSceneName = "Level2"; // Next scene to load
+    [SerializeField] private SceneReference currentLevelScene; // Scene to reload on retry
+    [SerializeField] private SceneReference nextLevelScene; // Next scene to load
 
     private int currentMistakes = 0;
     private bool testEnded = false;
@@ -414,13 +417,13 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void RetryCurrentLevel()
     {
-        if (!string.IsNullOrEmpty(currentLevelSceneName))
+        if (currentLevelScene != null && !string.IsNullOrEmpty(currentLevelScene.SceneName))
         {
-            SceneManager.LoadScene(currentLevelSceneName);
+            SceneManager.LoadScene(currentLevelScene.SceneName);
         }
         else
         {
-            Debug.LogError("Current level scene name not configured!");
+            Debug.LogError("UI_Script: Current level scene is not assigned!");
         }
     }
 
@@ -429,19 +432,39 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void LoadConfiguredNextLevel()
     {
-        if (!string.IsNullOrEmpty(nextLevelSceneName))
+        if (nextLevelScene != null && !string.IsNullOrEmpty(nextLevelScene.SceneName))
         {
-            SceneManager.LoadScene(nextLevelSceneName);
+            SceneManager.LoadScene(nextLevelScene.SceneName);
         }
         else
         {
-            Debug.LogError("Next level scene name not configured!");
+            Debug.LogError("UI_Script: Next level scene is not assigned!");
         }
     }
+}
 
-    // Public accessors
-    public int CurrentMistakes => currentMistakes;
-    public int MaxMistakes => maxMistakes;
-    public bool IsTestEnded => testEnded;
-    public int CurrentGear => currentGear;
+[System.Serializable]
+public class SceneReference
+{
+#if UNITY_EDITOR
+    [SerializeField] private Object sceneAsset;
+#endif
+    [SerializeField] private string sceneName;
+
+    public string SceneName => sceneName;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (sceneAsset != null)
+        {
+            string path = AssetDatabase.GetAssetPath(sceneAsset);
+            sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
+        }
+        else
+        {
+            sceneName = string.Empty;
+        }
+    }
+#endif
 }
