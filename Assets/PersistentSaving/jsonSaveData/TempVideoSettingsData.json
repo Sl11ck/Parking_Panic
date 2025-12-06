@@ -1,7 +1,7 @@
 {
     "displayMode": "windowed",
     "antiAliasingMode": "msaa4x",
-    "framerate": 60,
+    "framerate": 30,
     "resolutionMode": [
         2560,
         1600
