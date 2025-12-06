@@ -13,7 +13,6 @@ public class UI_Script : MonoBehaviour
 
     [Header("Gear Display")]
     [SerializeField] private TextMeshProUGUI gearText; // Text to display current gear (N, R, 1-5)
-    [SerializeField] private float[] gearSpeedThresholds = { 0f, 15f, 30f, 50f, 70f }; // Speed thresholds for each gear
 
     [Header("Mistake Checkboard")]
     [SerializeField] private RectTransform checkboardPanel; // Reference to the checkboard's RectTransform
@@ -36,10 +35,12 @@ public class UI_Script : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private CarController2D carController;
+    [SerializeField] private GearShifting gearShifting;
 
     [Header("Testing Mode")]
     [SerializeField] private bool enableTestMode = false;
     [SerializeField][Range(-80f, 80f)] private float testSpeed = 0f;
+    [SerializeField][Range(1, 5)] private int testGear = 1;
 
     [Header("Test Controls")]
     [SerializeField] private bool testAddMistake = false; // Check this to add a mistake
@@ -52,7 +53,7 @@ public class UI_Script : MonoBehaviour
 
     private int currentMistakes = 0;
     private bool testEnded = false;
-    private int currentGear = 0; // 0 = Neutral, 1-5 = Gears, -1 = Reverse
+    private int currentGear = 0; // Current gear being displayed
 
     // Store original checkboard transform values
     private Vector2 originalCheckboardPosition;
@@ -86,6 +87,12 @@ public class UI_Script : MonoBehaviour
         if (carController == null)
         {
             carController = FindFirstObjectByType<CarController2D>();
+        }
+
+        // Auto-find gear shifting if not assigned
+        if (gearShifting == null)
+        {
+            gearShifting = FindFirstObjectByType<GearShifting>();
         }
     }
 
@@ -149,9 +156,8 @@ public class UI_Script : MonoBehaviour
 
     private void UpdateGear()
     {
-        // Get signed speed for gear calculation
-        float currentSpeed = GetCarSpeedSigned();
-        int newGear = CalculateGear(currentSpeed);
+        // Get gear from GearShifting component
+        int newGear = GetCurrentGear();
 
         // Only update if gear changed
         if (newGear != currentGear)
@@ -161,31 +167,26 @@ public class UI_Script : MonoBehaviour
         }
     }
 
-    private int CalculateGear(float speed)
+    private int GetCurrentGear()
     {
-        // Check for reverse
-        if (speed < -0.5f)
+        // In test mode, use test gear
+        if (enableTestMode)
         {
-            return -1; // Reverse gear
+            return testGear;
         }
 
-        // Check for neutral (very low speed)
-        if (Mathf.Abs(speed) < 0.5f)
+        // Get gear from GearShifting component using reflection (since currentGear is private)
+        if (gearShifting != null)
         {
-            return 0; // Neutral
-        }
-
-        // Calculate forward gear based on speed thresholds
-        float absSpeed = Mathf.Abs(speed);
-        for (int i = gearSpeedThresholds.Length - 1; i >= 0; i--)
-        {
-            if (absSpeed >= gearSpeedThresholds[i])
+            // Use reflection to access private field
+            var fieldInfo = typeof(GearShifting).GetField("currentGear", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (fieldInfo != null)
             {
-                return Mathf.Min(i + 1, 5); // Cap at gear 5
+                return (int)fieldInfo.GetValue(gearShifting);
             }
         }
 
-        return 1; // Default to first gear
+        return 1; // Default to first gear if no GearShifting component
     }
 
     private void UpdateGearDisplay()
@@ -193,18 +194,7 @@ public class UI_Script : MonoBehaviour
         // Update gear text
         if (gearText != null)
         {
-            switch (currentGear)
-            {
-                case -1:
-                    gearText.text = "R";
-                    break;
-                case 0:
-                    gearText.text = "N";
-                    break;
-                default:
-                    gearText.text = currentGear.ToString();
-                    break;
-            }
+            gearText.text = currentGear.ToString();
         }
     }
 
@@ -221,27 +211,6 @@ public class UI_Script : MonoBehaviour
             Rigidbody2D rb = carController.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                return rb.linearVelocity.magnitude;
-            }
-        }
-        return 0f;
-    }
-
-    private float GetCarSpeedSigned()
-    {
-        // Returns signed speed (positive/negative) for gear calculation
-        if (enableTestMode)
-        {
-            return testSpeed;
-        }
-
-        if (carController != null)
-        {
-            Rigidbody2D rb = carController.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                // For actual car, use velocity magnitude (always positive)
-                // You may need to track direction separately if implementing reverse in real gameplay
                 return rb.linearVelocity.magnitude;
             }
         }
