@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 367816892}
   - component: {fileID: 367816894}
   - component: {fileID: 367816893}
+  - component: {fileID: 367816895}
   m_Layer: 5
   m_Name: Checkboard
   m_TagString: Untagged
@@ -468,6 +469,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367816891}
   m_CullTransparentMesh: 1
+--- !u!114 &367816895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367816891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.8313726, g: 0.14901961, b: 0.14509805, a: 1}
+  m_EffectDistance: {x: 7, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &698186053
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 342, y: -57}
+  m_AnchoredPosition: {x: 334.7, y: -52.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698186055
@@ -1600,13 +1616,6 @@ MonoBehaviour:
   maxSpeedAngle: -111
   maxSpeedValue: 240
   gearText: {fileID: 1871111895}
-  gearSpeedThresholds:
-  - 0
-  - 20
-  - 40
-  - 60
-  - 80
-  - 100
   checkboardPanel: {fileID: 1589635204}
   checkboardImage: {fileID: 367816893}
   bareCheckboardSprite: {fileID: -2565883555323872123, guid: fbe0563a7dc9ba94a96d3092be37b846, type: 3}
@@ -1620,9 +1629,11 @@ MonoBehaviour:
   mistakeMarkPrefab: {fileID: 8972954727180319269, guid: 437efa04682cea14eb0834ad659cbf51, type: 3}
   passPanel: {fileID: 172501527}
   failPanel: {fileID: 2127827658}
-  carController: {fileID: 0}
+  carController: {fileID: 3628846797885814233, guid: aa0a605843b925b4b835c156c4f3f5b9, type: 3}
+  gearShifting: {fileID: 7918404955161262377, guid: aa0a605843b925b4b835c156c4f3f5b9, type: 3}
   enableTestMode: 1
   testSpeed: 0
+  testGear: 1
   testAddMistake: 1
   testCompleteObjective: 1
   testResetTest: 1
