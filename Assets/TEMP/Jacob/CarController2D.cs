@@ -29,6 +29,9 @@ public class CarController2D : MonoBehaviour
 
     private SignManager signManager;
 
+    public float collisionCooldown = 1f;
+    private float colCooldown;
+
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
@@ -85,6 +88,8 @@ public class CarController2D : MonoBehaviour
             speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
         }
         speed -= speed * drag * Time.deltaTime;
+
+        colCooldown -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -103,12 +108,16 @@ public class CarController2D : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("MinorCollisions"))
+        if (colCooldown <= 0)
         {
-            signManager.RegisterMistake();
-            paintChips++;
-            paintChips = Mathf.Clamp(paintChips, 0, carSpritesPaintChip.Length - 1);
-            GetComponent<SpriteRenderer>().sprite = carSpritesPaintChip[paintChips];
+            if (col.gameObject.layer == LayerMask.NameToLayer("MinorCollisions"))
+            {
+                signManager.RegisterMistake();
+                paintChips++;
+                paintChips = Mathf.Clamp(paintChips, 0, carSpritesPaintChip.Length - 1);
+                GetComponent<SpriteRenderer>().sprite = carSpritesPaintChip[paintChips];
+                colCooldown = collisionCooldown;
+            }
         }
     }
 }
