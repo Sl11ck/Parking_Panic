@@ -1,23 +1,18 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 public class GearShifting : MonoBehaviour
 {
-
     public int maxGear = 5;
-
-    private int currentGear = 1;
-
     public float maxSpeedIncreasePerGear = 20f;
     public float gearPowerLoss = 1f;
 
+    public float minReqStrictness = 0.8f;
+
+    private int currentGear = 1;
     private float initialSteeringForce;
     private float initialMaxSpeed;
     private float initialAcceleration;
-    private bool isGearingUp = false;
-    private bool isGearingDown = false;
 
-    private bool gearLock = false;
     private InputSystem_Actions _inputActions;
     private CarController2D _carController;
 
@@ -38,17 +33,8 @@ public class GearShifting : MonoBehaviour
     {
         _inputActions.Enable();
 
-        _inputActions.Player.GearUp.performed += 
-            ctx => isGearingUp = true;
-
-        _inputActions.Player.GearUp.canceled += 
-            ctx => isGearingUp = false;
-
-        _inputActions.Player.GearDown.performed += 
-            ctx => isGearingDown = true;
-
-        _inputActions.Player.GearDown.canceled += 
-            ctx => isGearingDown = false;
+        _inputActions.Player.GearUp.performed += ctx => ShiftUp();
+        _inputActions.Player.GearDown.performed += ctx => ShiftDown();
     }
 
     private void OnDisable()
@@ -56,39 +42,23 @@ public class GearShifting : MonoBehaviour
         _inputActions.Disable();
     }
 
-    // Update is called once per frame
-    void Update()
+    void ShiftUp()
     {
-        if (!gearLock)
-        {
-            if (isGearingUp)
-            {
-                currentGear += 1;
-                currentGear = Mathf.Clamp(currentGear, 1, maxGear);
-                gearLock = true;
-                SetCarGear();
-            } else if (isGearingDown)
-            {
-                currentGear -= 1;
-                currentGear = Mathf.Clamp(currentGear, 1, maxGear);
-                gearLock = true;
-                SetCarGear();
-            }
-        }
+        currentGear = Mathf.Clamp(currentGear + 1, 1, maxGear);
+        SetCarGear();
+    }
 
-        if (gearLock)
-        {
-            if(!isGearingUp && !isGearingDown)
-            {
-                gearLock = false;
-            }
-        }
+    void ShiftDown()
+    {
+        currentGear = Mathf.Clamp(currentGear - 1, 1, maxGear);
+        SetCarGear();
     }
 
     void SetCarGear()
     {
         _carController.maxSpeed = initialMaxSpeed + maxSpeedIncreasePerGear * (currentGear - 1);
-        _carController.acceleration = initialAcceleration - initialAcceleration * (currentGear - 1) * gearPowerLoss;
-        _carController.steeringForce = initialSteeringForce - initialSteeringForce * (currentGear - 1) * gearPowerLoss;
+        _carController.acceleration = initialAcceleration / Mathf.Pow(currentGear, gearPowerLoss);
+        _carController.steeringForce = initialSteeringForce / Mathf.Pow(currentGear, gearPowerLoss);
+        _carController.minimumSpeedReq = (initialMaxSpeed + maxSpeedIncreasePerGear * (currentGear - 2)) * minReqStrictness;
     }
 }
