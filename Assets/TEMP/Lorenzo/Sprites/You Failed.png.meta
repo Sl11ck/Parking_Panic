@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 2b489250efcb0f14a8361292e896c81b
+guid: 1db11665c2c183f47901aed045155767
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -993183575786483884
-    second: Needle_0
+      213: 9151072902863024889
+    second: You Failed_0
+  - first:
+      213: 6179924653648716643
+    second: You Failed_1
+  - first:
+      213: -6517636400607146505
+    second: You Failed_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Needle_0
+      name: You Failed_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 119
-        height: 156
+        x: 43
+        y: 114
+        width: 410
+        height: 283
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45f8e78ccc08732f0800000000000000
-      internalID: -993183575786483884
+      spriteID: 9f27ad812542ffe70800000000000000
+      internalID: 9151072902863024889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: You Failed_1
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 368
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3632967dab083c550800000000000000
+      internalID: 6179924653648716643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: You Failed_2
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 105
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fdc7aeb934bc85a0800000000000000
+      internalID: -6517636400607146505
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Needle_0: -993183575786483884
+      You Failed_0: 9151072902863024889
+      You Failed_1: 6179924653648716643
+      You Failed_2: -6517636400607146505
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
