@@ -8,6 +8,8 @@ public class ParkManger : MonoBehaviour
     [SerializeField] private GearShifting gearShifting;
     [SerializeField] private CameraController cameraController;
 
+    [SerializeField] private SignManager signManager;
+
     [Header("Collider References")]
     [SerializeField] private BoxCollider2D parkingLotSpaceCollider; // Large area for camera trigger
     [SerializeField] private BoxCollider2D parkingSpaceCollider; // Small area for win condition
@@ -179,13 +181,13 @@ public class ParkManger : MonoBehaviour
         FreezePlayer();
 
         // Notify the UI script that the objective is complete
-        if (uiScript != null)
+        if (signManager != null)
         {
-            uiScript.CompleteObjective();
+            signManager.CompleteObjective();
         }
         else
         {
-            Debug.LogError("ParkManager: UI_Script reference is missing!");
+            Debug.LogError("ParkManager: Sign Manager reference is missing!");
         }
     }
 
