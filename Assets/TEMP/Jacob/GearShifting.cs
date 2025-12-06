@@ -54,6 +54,11 @@ public class GearShifting : MonoBehaviour
         SetCarGear();
     }
 
+    public int GetGear()
+    {
+        return currentGear;
+    }
+
     void SetCarGear()
     {
         _carController.maxSpeed = initialMaxSpeed + maxSpeedIncreasePerGear * (currentGear - 1);
