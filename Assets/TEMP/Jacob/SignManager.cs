@@ -58,12 +58,12 @@ public class SignManager : MonoBehaviour
         }
     }
     
-    private int GetCurrentGear()
+    private string GetCurrentGear()
     {
         // In test mode, use test gear
         if (enableTestMode)
         {
-            return testGear;
+            return testGear.ToString();
         }
 
         return car.GetComponent<GearShifting>().GetGear();

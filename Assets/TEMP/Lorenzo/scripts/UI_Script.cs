@@ -45,7 +45,7 @@ public class UI_Script : MonoBehaviour
     [SerializeField] private SceneReference currentLevelScene; // Scene to reload on retry
     [SerializeField] private SceneReference nextLevelScene; // Next scene to load
 
-    private int currentGear = 0; // Current gear being displayed
+    private string currentGear = "0"; // Current gear being displayed
 
     // Store original checkboard transform values
     private Vector2 originalCheckboardPosition;
@@ -120,7 +120,7 @@ public class UI_Script : MonoBehaviour
 
     private void UpdateGear()
     {
-        int newGear = GetCurrentGear();
+        string newGear = GetCurrentGear();
 
         if (newGear != currentGear)
         {
@@ -130,7 +130,7 @@ public class UI_Script : MonoBehaviour
     }
 
     // External caller (game logic) can set gear to display using this method
-    public void UpdateGear(int newGear)
+    public void UpdateGear(string newGear)
     {
         if (newGear != currentGear)
         {
@@ -139,7 +139,7 @@ public class UI_Script : MonoBehaviour
         }
     }
 
-    private int GetCurrentGear()
+    private string GetCurrentGear()
     {
         // Try calling a public GetGear() method if present, otherwise fall back to private field
         if (gearShifting != null)
@@ -147,17 +147,17 @@ public class UI_Script : MonoBehaviour
             var method = typeof(GearShifting).GetMethod("GetGear", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
             if (method != null)
             {
-                return (int)method.Invoke(gearShifting, null);
+                return (string)method.Invoke(gearShifting, null);
             }
 
             var fieldInfo = typeof(GearShifting).GetField("currentGear", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (fieldInfo != null)
             {
-                return (int)fieldInfo.GetValue(gearShifting);
+                return (string)fieldInfo.GetValue(gearShifting);
             }
         }
 
-        return 1; // Default to first gear if unavailable
+        return "1"; // Default to first gear if unavailable
     }
 
     private void UpdateGearDisplay()
@@ -300,7 +300,7 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void ResetTest()
     {
-        currentGear = 0;
+        currentGear = "0";
 
         // Reset checkboard to original position and scale
         if (checkboardPanel != null)
