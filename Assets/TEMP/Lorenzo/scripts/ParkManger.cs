@@ -10,6 +10,9 @@ public class ParkManger : MonoBehaviour
 
     [SerializeField] private SignManager signManager;
 
+    [Header("Visual Effects")]
+    [SerializeField] private ParkingLightWall lightWallEffect; // Add this reference
+
     [Header("Collider References")]
     [SerializeField] private BoxCollider2D parkingLotSpaceCollider; // Large area for camera trigger
     [SerializeField] private BoxCollider2D parkingSpaceCollider; // Small area for win condition
@@ -56,6 +59,12 @@ public class ParkManger : MonoBehaviour
             {
                 Debug.LogWarning("ParkManager: CameraController not found! Camera zoom will not work. Add CameraController script to your Main Camera.");
             }
+        }
+
+        // Auto-find light wall effect if not assigned
+        if (lightWallEffect == null)
+        {
+            lightWallEffect = GetComponentInChildren<ParkingLightWall>();
         }
 
         // Get the car's rigidbody and collider
@@ -116,6 +125,12 @@ public class ParkManger : MonoBehaviour
                 playerInParkingSpace = true;
                 timeInZone = 0f;
 
+                // Start the light wall shrinking effect
+                if (lightWallEffect != null)
+                {
+                    lightWallEffect.StartShrinking();
+                }
+
                 if (showDebugInfo)
                 {
                     Debug.Log("Car is now fully inside parking SPACE - timer started");
@@ -143,6 +158,12 @@ public class ParkManger : MonoBehaviour
             {
                 playerInParkingSpace = false;
                 timeInZone = 0f;
+
+                // Reset the light wall
+                if (lightWallEffect != null)
+                {
+                    lightWallEffect.ResetWalls();
+                }
 
                 if (showDebugInfo)
                 {
