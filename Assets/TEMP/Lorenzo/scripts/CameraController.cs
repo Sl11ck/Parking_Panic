@@ -31,6 +31,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private bool freezePlayerDuringIntro = true; // NEW
     [SerializeField] private bool hideUIDuringIntro = true; // NEW
 
+    private Coroutine activeIntroCoroutine;
+    [SerializeField] GameObject skipCutsceneButton;
+
     [Header("Intro UI References")] // NEW SECTION
     [SerializeField] private GameObject uiContainer; // Main UI canvas/container to hide
     [SerializeField] private CarController2D carController; // To disable during intro
@@ -125,7 +128,7 @@ public class CameraController : MonoBehaviour
 
         if (playIntroOnStart && introWaypoints != null && introWaypoints.Length > 0)
         {
-            StartCoroutine(PlayIntroSequence());
+            activeIntroCoroutine = StartCoroutine(PlayIntroSequence());
         }
     }
 
@@ -170,6 +173,7 @@ public class CameraController : MonoBehaviour
 
         // NEW: Freeze player and hide UI
         FreezePlayerForIntro();
+        skipCutsceneButton.SetActive(true);
 
         if (introStartDelay > 0)
         {
@@ -275,6 +279,7 @@ public class CameraController : MonoBehaviour
 
         // NEW: Restore player control and UI
         UnfreezePlayerAfterIntro();
+        skipCutsceneButton.SetActive(false);
 
         if (showIntroDebug)
         {
@@ -283,6 +288,40 @@ public class CameraController : MonoBehaviour
 
         isPlayingIntro = false;
         normalFollowEnabled = true;
+    }
+
+    public void SkipIntroSequence()
+    {
+        if (!isPlayingIntro) return;
+
+        if (showIntroDebug) Debug.Log("CameraController: Skipping intro sequence...");
+
+        if (activeIntroCoroutine != null)
+        {
+            StopCoroutine(activeIntroCoroutine);
+            activeIntroCoroutine = null;
+        }
+
+        // 2. Snap Camera to final position (Player + Offset)
+        if (target != null)
+        {
+            transform.position = target.position + offset;
+        }
+
+        // 3. Snap Camera Zoom to normal
+        if (cam != null)
+        {
+            cam.orthographicSize = normalOrthographicSize;
+        }
+
+        // 4. Restore Controls and UI
+        UnfreezePlayerAfterIntro();
+
+        // 5. Reset State Flags
+        isPlayingIntro = false;
+        normalFollowEnabled = true;
+
+        skipCutsceneButton.SetActive(false);
     }
 
     // NEW: Freeze player and hide UI
