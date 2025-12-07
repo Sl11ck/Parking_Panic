@@ -61,23 +61,27 @@ public class PedestrianMovement : MonoBehaviour
         // Only CARS slow down based on player's position
         if (isCar)
         {
-            Vector3 toPlayer = player.transform.position - transform.position;
-            float distance = toPlayer.magnitude;
-
-            Vector3 forward = dir;
-            float angle = Vector3.Angle(forward, toPlayer);
-
-            bool playerInFront = angle < fovAngle;
-            bool playerClose = distance < slowRadius;
-
-            if (playerInFront && playerClose)
+            if(player != null)
             {
-                float t = distance / slowRadius;
-                float factor = Mathf.Lerp(slowMultiplier, 1f, t);
-                targetSpeed = speed * factor;
-            }
+                Vector3 toPlayer = player.transform.position - transform.position;
+                float distance = toPlayer.magnitude;
 
-            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * slowLerpSpeed);
+                Vector3 forward = dir;
+                float angle = Vector3.Angle(forward, toPlayer);
+
+                bool playerInFront = angle < fovAngle;
+                bool playerClose = distance < slowRadius;
+
+                if (playerInFront && playerClose)
+                {
+                    float t = distance / slowRadius;
+                    float factor = Mathf.Lerp(slowMultiplier, 1f, t);
+                    targetSpeed = speed * factor;
+                }
+
+                currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * slowLerpSpeed);
+            }
+            
         }
         else
         {
