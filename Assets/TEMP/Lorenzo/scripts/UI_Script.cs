@@ -45,6 +45,10 @@ public class UI_Script : MonoBehaviour
     [SerializeField] private SceneReference currentLevelScene; // Scene to reload on retry
     [SerializeField] private SceneReference nextLevelScene; // Next scene to load
 
+    [Header("Pass Fail SFX")]
+    public AudioClip PassSFX;
+    public AudioClip FailSFX;
+
     private string currentGear = "0"; // Current gear being displayed
 
     // Store original checkboard transform values
@@ -205,6 +209,7 @@ public class UI_Script : MonoBehaviour
         }
 
         AnimateCheckboardToCenter();
+        SFXManager.instance.PlaySFXClip(PassSFX, transform, 1.0f);
 
         if (passPanel != null)
         {
@@ -221,6 +226,7 @@ public class UI_Script : MonoBehaviour
         }
 
         AnimateCheckboardToCenter();
+        SFXManager.instance.PlaySFXClip(FailSFX, transform, 1.0f);
 
         if (failPanel != null)
         {
