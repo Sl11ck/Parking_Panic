@@ -1025,7 +1025,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1448779178133013019}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: LoadConfiguredNextLevel
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2117,7 +2117,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1448779178133013019}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: LoadConfiguredNextLevel
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -362,6 +362,10 @@ public class UI_Script : MonoBehaviour
             Debug.LogError("UI_Script: Next level scene is not assigned!");
         }
     }
+
+    public void GoBackToMainMenu(){
+        SceneManager.LoadScene("Main_Menu");
+    }
 }
 
 [System.Serializable]
