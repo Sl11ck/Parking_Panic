@@ -109,6 +109,8 @@ MonoBehaviour:
   fovAngle: 30
   slowMultiplier: 0.05
   slowLerpSpeed: 3
+  hornClip: {fileID: 8300000, guid: ed27149160c602145a83c55ffd8d60ed, type: 3}
+  hornCooldown: 5
   animator: {fileID: 0}
   signManager: {fileID: 0}
 --- !u!61 &2080749090288066854

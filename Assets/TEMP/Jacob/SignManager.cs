@@ -6,6 +6,7 @@ public class SignManager : MonoBehaviour
 
     [SerializeField] GameObject car;
     [SerializeField] UI_Script _ui;
+    [SerializeField] AudioClip scribbleClip;
 
     [Header("Testing Mode")]
     [SerializeField] private bool enableTestMode = false;
@@ -94,6 +95,7 @@ public class SignManager : MonoBehaviour
         }
         
         _ui.AddMistakeMark();
+        SFXManager.instance.PlaySFXClip(scribbleClip, transform, 2f);
 
         // Check if player has failed
         if (currentMistakes >= maxMistakes)

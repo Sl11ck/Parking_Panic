@@ -13,6 +13,10 @@ public class PedestrianMovement : MonoBehaviour
     public float slowMultiplier = 0.2f;
     public float slowLerpSpeed = 3f;
 
+    [SerializeField] AudioClip hornClip;
+    public float hornCooldown;
+    private float _hornCooldown;
+
     private PedestrianNode currentNode;
     private PedestrianNode targetNode;
 
@@ -75,6 +79,13 @@ public class PedestrianMovement : MonoBehaviour
                 if (playerInFront && playerClose)
                 {
                     float t = distance / slowRadius;
+
+                    if (_hornCooldown <= 0 && t < 0.5f)
+                    {
+                        _hornCooldown = hornCooldown;
+                        SFXManager.instance.PlaySFXClip(hornClip, transform, 1f);
+                    }
+
                     float factor = Mathf.Lerp(slowMultiplier, 1f, t);
                     targetSpeed = speed * factor;
                 }
@@ -121,6 +132,8 @@ public class PedestrianMovement : MonoBehaviour
             currentNode = targetNode;
             targetNode = currentNode.RandomNode(obedience);
         }
+        
+        _hornCooldown -= Time.deltaTime;
     }
 
     int GetDirection(Vector3 moveDir)
