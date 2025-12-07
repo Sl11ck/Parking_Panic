@@ -44,14 +44,21 @@ public class GearShifting : MonoBehaviour
 
     void ShiftUp()
     {
-        currentGear = Mathf.Clamp(currentGear + 1, 1, maxGear);
-        SetCarGear();
+        if (GetGear() is not "R")
+        {
+            currentGear = Mathf.Clamp(currentGear + 1, 1, maxGear);
+            SetCarGear();
+        }
+        
     }
 
     void ShiftDown()
     {
-        currentGear = Mathf.Clamp(currentGear - 1, 1, maxGear);
-        SetCarGear();
+        if (GetGear() is not "R")
+        {
+            currentGear = Mathf.Clamp(currentGear - 1, 1, maxGear);
+            SetCarGear();
+        }
     }
 
     public string GetGear()

@@ -7509,6 +7509,7 @@ MonoBehaviour:
   creditsPanel: {fileID: 1918782614}
   quickStartPanel: {fileID: 199418144}
   BackgroundImage: {fileID: 495935462}
+  LogoImage: {fileID: 17483804}
   StartScreenText: {fileID: 1247470060}
   startScreenTxtFadeDuration: 1.5
   playBtn: {fileID: 577115949}

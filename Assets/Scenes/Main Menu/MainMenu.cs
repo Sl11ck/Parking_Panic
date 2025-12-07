@@ -18,6 +18,7 @@ public class PanelManager : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject quickStartPanel;
     public Image BackgroundImage;
+    public Image LogoImage;
 
     [Header("Start Panel Element")]
     public TextMeshProUGUI StartScreenText;
@@ -220,6 +221,7 @@ public class PanelManager : MonoBehaviour
         PlayAcceptSFX();
         SetAllPanelsInactive();
         BackgroundImage.color = Color.white;
+        LogoImage.color = Color.white;
         playPanel.SetActive(true);
     }
 
@@ -267,6 +269,7 @@ public class PanelManager : MonoBehaviour
         SetAllPanelsInactive();
         quickStartPanel.SetActive(true);
         BackgroundImage.color = Color.gray;
+        LogoImage.color = Color.gray;
     }
 
     // QUICKSTART CONTROL SECTION      END
