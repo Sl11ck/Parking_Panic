@@ -1,73 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
     private List<AudioSource> activeMusicSources = new List<AudioSource>();
-    
-    // References to track specific audio sources so we can control them individually
     private AudioSource _activeLevelMusicSource; 
     private AudioSource _activePauseMusicSource;
 
     public static MusicManager instance;
 
-    [Header("Settings Panel Buttons")]
-    public AudioSource MusicObject; // The Prefab used to spawn audio
+    [Header("Settings")]
+    public AudioSource MusicObject; 
+    public AudioMixerGroup musicMixerGroup; 
 
     private void Awake()
     {
-        if (instance == null)
+        // 1. NUCLEAR SINGLETON: Kill the old manager from Main Menu
+        // This ensures Level 1 gets a fresh manager with correct references
+        if (instance != null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keeps music playing between scenes
+            Destroy(instance.gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // 2. SAFETY: Ensure the global Audio Listener is ON
+        AudioListener.pause = false; 
     }
 
     public void PlayMusicClip(AudioClip audioClip, Transform spawnTransform, float volume, bool loop)
     {
+        // Instantiate the audio source
         AudioSource audioSource = Instantiate(MusicObject, spawnTransform.position, Quaternion.identity);
+
+        // FIX: Force connection to Mixer
+        if (musicMixerGroup != null) audioSource.outputAudioMixerGroup = musicMixerGroup;
+
+        // FIX: Force sound to be 2D (Spatial Blend = 0)
+        // This ensures the volume is the same no matter where the camera is
+        audioSource.spatialBlend = 0f; 
+
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.loop = loop;
         audioSource.Play();
 
-        // Add to tracking list
         activeMusicSources.Add(audioSource);
-
-        // --- ADDITION 1: Track this as the current level music ---
-        // We assume the last clip played via this method is the main level theme
         _activeLevelMusicSource = audioSource; 
 
         if (!loop)
         {
-            float clipLength = audioSource.clip.length;
-            Destroy(audioSource.gameObject, clipLength);
+            Destroy(audioSource.gameObject, audioSource.clip.length);
         }
     }
 
-    // --- ADDITION 2: New Methods for Pause Menu Logic ---
-
     public void SwapToPauseMusic(AudioClip pauseClip, float volume)
     {
-        // 1. Pause the Level Music (This automatically saves the time/position)
-        if (_activeLevelMusicSource != null)
-        {
-            _activeLevelMusicSource.Pause();
-        }
+        if (_activeLevelMusicSource != null) _activeLevelMusicSource.Pause();
 
-        // 2. Instantiate the Pause Music
-        // We spawn a new object specifically for the pause loop
         _activePauseMusicSource = Instantiate(MusicObject, transform.position, Quaternion.identity);
+
+        if (musicMixerGroup != null) _activePauseMusicSource.outputAudioMixerGroup = musicMixerGroup;
+        
+        // FIX: Force 2D here too
+        _activePauseMusicSource.spatialBlend = 0f;
+
         _activePauseMusicSource.clip = pauseClip;
         _activePauseMusicSource.volume = volume;
         _activePauseMusicSource.loop = true;
-        
-        // Ensure pause music plays even if Time.timeScale is 0
         _activePauseMusicSource.ignoreListenerPause = true; 
         _activePauseMusicSource.Play();
 
@@ -76,27 +78,22 @@ public class MusicManager : MonoBehaviour
 
     public void ResumeLevelMusic()
     {
-        // 1. Destroy the Pause Music
         if (_activePauseMusicSource != null)
         {
             _activePauseMusicSource.Stop();
-            activeMusicSources.Remove(_activePauseMusicSource); // Clean up list
+            activeMusicSources.Remove(_activePauseMusicSource);
             Destroy(_activePauseMusicSource.gameObject);
             _activePauseMusicSource = null;
         }
 
-        // 2. UnPause the Level Music (Resumes from saved time)
         if (_activeLevelMusicSource != null)
         {
             _activeLevelMusicSource.UnPause();
         }
     }
 
-    // ----------------------------------------------------
-
     public void StopAllMusic()
     {
-        // Stop and destroy all tracked music sources
         for (int i = activeMusicSources.Count - 1; i >= 0; i--)
         {
             if (activeMusicSources[i] != null)
