@@ -9141,7 +9141,7 @@ MonoBehaviour:
   m_text: 'Controls
 
 
-    accelerate - [ a ]
+    accelerate - [ w ]
 
     brake - [ s ]
 
