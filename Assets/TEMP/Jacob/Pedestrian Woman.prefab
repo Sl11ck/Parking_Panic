@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 6047752347147467583, guid: ae2a82cd8fed9c941b4b6e7a81b99cb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   fovAngle: 30
   slowMultiplier: 0.2
   slowLerpSpeed: 3
+  hornClip: {fileID: 0}
+  hornCooldown: 0
   animator: {fileID: 4274080362121869293}
   signManager: {fileID: 0}
 --- !u!61 &4177202238448036690
