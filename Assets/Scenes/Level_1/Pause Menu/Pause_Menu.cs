@@ -7,8 +7,10 @@ public class Pause_Menu : MonoBehaviour
 {
     [Header("Panel References")]
     public GameObject pausePanel;
-    public Button QuitBtn;
     public Button ResumeBtn;
+    public Button RetryBtn;
+    public Button QuitBtn;
+
 
     [Header("Audio Settings")]
     public AudioClip pauseMusicClip;
@@ -20,6 +22,7 @@ public class Pause_Menu : MonoBehaviour
     {
         pausePanel.SetActive(false);
         ResumeBtn.onClick.AddListener(ResumeGameplay);
+        RetryBtn.onClick.AddListener(RestartGameplay);
         QuitBtn.onClick.AddListener(LoadMainMenu);
         audioSettingsSaveLoad.LoadAudioSettings();
     }
@@ -63,6 +66,13 @@ public class Pause_Menu : MonoBehaviour
         {
             MusicManager.instance.ResumeLevelMusic();
         }
+    }
+
+    public static string SceneToLoad;
+    public void RestartGameplay()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMainMenu()
