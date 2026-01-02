@@ -66,10 +66,9 @@ public class AudioSettingsSaveLoad : MonoBehaviour
     // Save audio settings to JSON
     public void SaveAudioSettings()
     {
-        // Get current volume levels (convert from dB to linear)
-        float masterLinear = GetLinearVolume("masterVolume");
-        float sfxLinear = GetLinearVolume("soundVolume");
-        float musicLinear = GetLinearVolume("musicVolume");
+        float masterLinear = MasterVolSlider.value;
+        float sfxLinear = SFXVolSlider.value;
+        float musicLinear = MusicVolSlider.value;
 
         AudioSettingsData data = new AudioSettingsData(masterLinear, sfxLinear, musicLinear);
         string json = JsonUtility.ToJson(data, true);
@@ -86,14 +85,13 @@ public class AudioSettingsSaveLoad : MonoBehaviour
             string json = File.ReadAllText(audioSavePath);
             AudioSettingsData data = JsonUtility.FromJson<AudioSettingsData>(json);
 
-            // Apply loaded settings using the audioMixerManager instance
+            MasterVolSlider.SetValueWithoutNotify(data.masterVolume);
+            SFXVolSlider.SetValueWithoutNotify(data.sfxVolume);
+            MusicVolSlider.SetValueWithoutNotify(data.musicVolume);
+
             audioMixerManager.SetMasterVolume(data.masterVolume);
             audioMixerManager.SetSFXVolume(data.sfxVolume);
             audioMixerManager.SetMusicVolume(data.musicVolume);
-
-            MasterVolSlider.value = data.masterVolume;
-            SFXVolSlider.value = data.sfxVolume;
-            MusicVolSlider.value = data.musicVolume;
 
             MasterVolText.text = $"{Mathf.RoundToInt(data.masterVolume * 100f)}%";
             SFXVolText.text = $"{Mathf.RoundToInt(data.sfxVolume * 100f)}%";
