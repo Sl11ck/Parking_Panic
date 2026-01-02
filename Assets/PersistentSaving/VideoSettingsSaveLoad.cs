@@ -238,21 +238,10 @@ public class VideoSettingsSaveLoad : MonoBehaviour
 
     private void Awake()
     {
-        // Set the save path relative to the current folder
-        string currentDirectory = Path.GetDirectoryName(Application.dataPath);
-        videoSavePath = Path.Combine(currentDirectory, "Assets/PersistentSaving/jsonSaveData", "VideoSettingsData.json");
-        tempVideoSavePath = Path.Combine(currentDirectory, "Assets/PersistentSaving/jsonSaveData", "TempVideoSettingsData.json");
+        videoSavePath = Path.Combine(Application.persistentDataPath, "VideoSettingsData.json");
+        tempVideoSavePath = Path.Combine(Application.persistentDataPath, "TempVideoSettingsData.json");
 
-        // Ensure the directories exist
-        string[] paths = { videoSavePath, tempVideoSavePath };
-        foreach (string path in paths)
-        {
-            string directory = Path.GetDirectoryName(path);
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-        }
+        Debug.Log("Video Settings Path: " + videoSavePath);
     }
 
     // Save video settings to JSON (proper save to be used to change URP renderer settings)
@@ -412,6 +401,12 @@ public class VideoSettingsSaveLoad : MonoBehaviour
     {
         // Use the current which is the old save settings to overwrite onto the new temporary settings
         // so if anything other than the save changes btn is pressed the temporary changes made are since the old settings are discarded.
+        if (!File.Exists(videoSavePath))
+        {
+            Debug.Log("No video settings file found, using defaults.");
+            return;
+        }
+        
         string json = File.ReadAllText(videoSavePath);
         File.WriteAllText(tempVideoSavePath, json);
 

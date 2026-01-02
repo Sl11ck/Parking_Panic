@@ -28,17 +28,9 @@ public class AudioSettingsSaveLoad : MonoBehaviour
 
     private void Awake()
     {
-        // Set the save path relative to the current folder
-        string currentDirectory = Path.GetDirectoryName(Application.dataPath);
-        audioSavePath = Path.Combine(currentDirectory, "Assets/PersistentSaving/jsonSaveData", "AudioSettingsData.json");
-        Debug.Log(audioSavePath);
+        audioSavePath = Path.Combine(Application.persistentDataPath, "AudioSettingsData.json");
 
-        // Ensure the directory exists
-        string directory = Path.GetDirectoryName(audioSavePath);
-        if (!Directory.Exists(directory))
-        {
-            Directory.CreateDirectory(directory);
-        }
+        Debug.Log("Audio Settings Path: " + audioSavePath);
     }
 
     // Updating the volume percentage text on slider movement.

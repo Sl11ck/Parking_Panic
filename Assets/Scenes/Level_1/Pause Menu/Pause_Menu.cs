@@ -72,12 +72,15 @@ public class Pause_Menu : MonoBehaviour
     public static string SceneToLoad;
     public void RestartGameplay()
     {
+        audioSettingsSaveLoad.SaveAudioSettings();
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMainMenu()
     {
+        audioSettingsSaveLoad.SaveAudioSettings();
         Time.timeScale = 1f;
         audioSettingsSaveLoad.SaveAudioSettings();
         SceneManager.LoadScene("Main_Menu");
