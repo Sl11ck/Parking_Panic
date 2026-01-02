@@ -41,20 +41,21 @@ public class Pause_Menu : MonoBehaviour
     public void PauseGameplay()
     {
         pausePanel.SetActive(true);
-        Time.timeScale = 0f;
-
+        
         // FIX: Switch music when pausing
         if (MusicManager.instance != null && pauseMusicClip != null)
         {
             MusicManager.instance.SwapToPauseMusic(pauseMusicClip, pauseMusicVolume);
         }
+
+        Time.timeScale = 0f;
     }
 
     public void ResumeGameplay()
     {
+        Time.timeScale = 1f;
         audioSettingsSaveLoad.SaveAudioSettings();
         pausePanel.SetActive(false);
-        Time.timeScale = 1f;
 
         if (EventSystem.current != null)
         {
