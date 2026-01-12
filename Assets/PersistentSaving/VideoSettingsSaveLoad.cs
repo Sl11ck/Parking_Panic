@@ -46,7 +46,6 @@ public class VideoSettingsSaveLoad : MonoBehaviour
     new int[] {1280, 800},   // 720p 16:10
     new int[] {1920, 1080},  // 1080p 16:9
     new int[] {1920, 1200},  // 1080p 16:10
-    new int[] {2560, 1080},  // temp 21:9 for testing
     new int[] {2560, 1440},  // 1440p 16:9
     new int[] {2560, 1600},  // 1440p 16:10
     new int[] {3840, 2160},  // 4K
