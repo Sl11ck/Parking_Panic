@@ -1,0 +1,67 @@
+PARKING PANIC - Installation Instructions
+Thank you for downloading Parking Panic! Please find your operating system below for instructions on how to play.
+
+🖥️ Windows Instructions
+Extract the Files:
+
+Right-click the downloaded .zip file.
+
+Select Extract All... and choose a destination.
+
+Important: Do not try to run the game directly from inside the Zip file without extracting it first, or the game will crash.
+
+Play the Game:
+
+Open the extracted folder.
+
+Double-click Parking_Panic.exe (it may just be named Parking_Panic with the Unity logo) to start playing.
+
+🖥️ Linux Instructions (Ubuntu)
+Extract the Files:
+
+Double-click on the downloaded .zip file to extract it.
+
+Play the Game:
+
+Open the extracted folder.
+
+Double-click on Parking_Panic.x86_64.
+
+🍎 Mac Instructions
+If you try to open the game and receive an error stating "App is damaged and can't be opened" or if the app simply bounces in the dock and closes, don't worry! The file is safe.
+
+Please follow these steps to unlock the game:
+
+Step 1: Fix "App is Damaged" Warning
+
+Open the Terminal app (Press Cmd + Space, type "Terminal", and hit Enter).
+
+Type the following command (but do not hit Enter yet): sudo xattr -cr (Note: Make sure there is a space after -cr)
+
+Drag the parking_panic_mac_final.app from your Finder window directly into the Terminal window.
+
+Press Enter. (If asked for a password, type your Mac login password and press Enter. You won't see the cursor move while typing).
+
+Try to open the game. If it works, you are done! If not, proceed to Step 2.
+
+Step 2: Fix Executable Permissions
+
+If the game still refuses to open, you need to manually allow the game file to execute:
+
+Right-click (or Control + Click) on the parking_panic_mac_final.app icon.
+
+Select Show Package Contents.
+
+Open the Contents folder, then open the MacOS folder.
+
+Locate the file named Parking_Panic.
+
+Open the Terminal app again.
+
+Type the following command (don't forget the space at the end): chmod +x
+
+Drag the Parking_Panic file from the folder you just opened into the Terminal window.
+
+Press Enter.
+
+You can now close the folders and Terminal. Double-click the game to play!
