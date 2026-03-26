@@ -1,7 +1,5 @@
 # Parking Panic
 
-**Parking Panic** is a 2D top-down driving and parking simulation game developed in the Unity Game Engine by **Team Coffee Machine** in 48 hours for a Game Jam hosted in the University of Malta. The team was made up of four members including Dariusz Krych, Isaac Piscopo, Jacob Fenech and Lorenzo Iabichella.
-
 ## Overview
 The goal of the game is to navigate through various city levels, adhering to traffic rules, avoiding pedestrians and obstacles, and successfully parking your vehicle in a designated spot at the end of each level. The game features detailed driving physics, weather effects, and five progressively difficult levels.
 
